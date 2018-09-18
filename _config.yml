@@ -39,7 +39,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: false
   auto_detect: true
   tab_replace:
@@ -76,18 +76,11 @@ pagination_dir: page
 # theme: landscape
 theme: hexo-casper
 
-theme_config:
-  # hexo casper theme settings
-  bio: Container, Microservice, Python, Go, Reading, Life, And Love.
-  post_toc: true
-  
-  social:
-    twitter: https://twitter.com/cizixs
-  
-  widgets:
-    recent_posts: true
-    category: false
-    tagcloud: false
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'okaidia'
+  line_number: false    # default false
+  custom_css:      # optional
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
