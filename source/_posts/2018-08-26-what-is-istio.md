@@ -4,6 +4,8 @@ title: "什么是 istio"
 excerpt: "什么是 istio？它解决什么问题？和微服务有什么关系？service mesh 又是什么？这篇文章就尝试解答这些问题"
 categories: blog
 tags: [istio, container, microservice, servicemesh]
+cover_img: https://i.loli.net/2018/10/01/5bb1caab80eaa.jpg
+feature_img: https://i.loli.net/2018/10/01/5bb1caab80eaa.jpg
 comments: true
 share: true
 ---

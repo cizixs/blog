@@ -4,6 +4,7 @@ title: "raft 一致性算法"
 excerpt: "分布式系统有一个很重要的问题要解决，当一台机器出现问题时，我们希望整个集群还是能够正常运行的，以达到高可用的要求。因为系统的数据是不断变化的，所以要保证集群的数据是同步的，不然会出现数据混论或者丢失的情况。这就是一致性问题，raft 算法是分布式系统一致性的一个解决方案。"
 categories: blog
 tags: [raft, distributed-system]
+cover_img: http://cizixs.u.qiniudn.com/7E796EE4-5641-4DA9-97FA-F2EADB48C550.JPG
 comments: true
 share: true
 ---

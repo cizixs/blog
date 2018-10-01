@@ -4,6 +4,7 @@ title: "serverless 平台 knative 简介"
 excerpt: "knative 是谷歌开源的 serverless 架构方案，旨在提供一套简单易用的 serverless 方案，把 serverless 标准化。目前参与的公司主要是 Google、Pivotal、IBM、Red Hat，2018年7月24日才刚刚对外发布，当前还处于快速发展的阶段."
 categories: blog
 tags: [kubernetes, container, serverless, knative]
+cover_img: https://i.loli.net/2018/08/25/5b811d40e22bb.png
 comments: true
 share: true
 ---

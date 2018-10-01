@@ -4,6 +4,7 @@ title: "使用 promethues 和 grafana 监控自己的 linux 机器"
 excerpt: "最近在研究如何给应用添加合适的 metrics，用来分析应用的使用情况以及调试，整体思路是使用 promethues 收集数据，grafana 进行数据的展示。过程中发现了 node-exporter 项目，觉得可以直接拿来监控自己平时使用的 linux 机器，就有了这篇文章。"
 categories: blog
 tags: [linux, prometheus, grafana, monitor, docker]
+cover_img: http://cizixs.u.qiniudn.com/8D3951F0-EC1D-4885-8481-D48F4E228262.JPG
 comments: true
 share: true
 ---

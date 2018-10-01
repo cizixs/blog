@@ -4,6 +4,7 @@ title: "linux 上实现 vxlan 网络"
 excerpt: "Linux 对 vxlan 协议的支持时间并不久，2012 年 Stephen Hemminger 才把相关的工作合并到 kernel 中，并最终出现在 kernel 3.7.0 版本。"
 categories: blog
 tags: [linux, vxlan, network, sdn]
+cover_img: http://cizixs.u.qiniudn.com/B30F37B7-FA20-46AE-814A-79A7A3A853F9.JPG
 comments: true
 share: true
 ---

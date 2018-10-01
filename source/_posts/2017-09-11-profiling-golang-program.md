@@ -4,6 +4,7 @@ title: "使用 pprof 和火焰图调试 golang 应用"
 excerpt: "在计算机性能调试领域里，profiling 就是对应用的画像，这里画像就是应用使用 CPU 和内存的情况。也就是说应用使用了多少 CPU 资源？都是哪些部分在使用？每个函数使用的比例是多少？有哪些函数在等待 CPU 资源？知道了这些，我们就能对应用进行规划，也能快速定位性能瓶颈。"
 categories: blog
 tags: [golang, pprof, flamegraph]
+cover_img: http://cizixs.u.qiniudn.com/E6F448C3-CA7A-465F-986B-65A07CC38ECF%202.JPG
 comments: true
 share: true
 ---
