@@ -19,7 +19,7 @@ share: true
 
 可以看出，knative 是为了解决容器为核心的 serverless 应用的构建、部署和运行的问题。
 
-serverless 的概念已经出现蛮久了，为了理解 serverless 可以从应用开发者的角度来看，使用 serverless 框架之后，应用开发者的整个操作流程就变成了：
+serverless 的概念已经出现蛮久了，为了理解 serverless, 可以从应用开发者的角度来看，使用 serverless 框架之后，应用开发者的整个操作流程就变成了：
 
 ```bash
 ~ # 编写 code 和 configuration 文件
@@ -39,9 +39,9 @@ hello, world from Awesome FaaS App!
 * 网络的路由和流量控制
 * 应用的自动伸缩
 
-和标准化的 FaaS 不同，knative 期望能够运行所有的 workload : traditional application、function、container。
+和标准化的 FaaS 不同（只运行特定标准的 Function 代码），knative 期望能够运行所有的 workload : traditional application、function、container。
 
-knative 是建立在 kubernetes 和 istio 平台之上的，使用 kubernetes 提供的容器管理能力（deployment、replicaset、和 pods等），以及 istio 提供的网络管理功能（ingress、LB、dynamic route等）。
+knative 建立在 kubernetes 和 istio 平台之上，使用 kubernetes 提供的容器管理能力（deployment、replicaset、和 pods等），以及 istio 提供的网络管理功能（ingress、LB、dynamic route等）。
 
 ![knative with istio and kubernetes](https://i.loli.net/2018/08/25/5b811d40e22bb.png)
 
@@ -57,9 +57,9 @@ knative 是建立在 kubernetes 和 istio 平台之上的，使用 kubernetes �
 
 build 的功能是把用户的代码自动化构建成容器镜像，初次听起来很奇怪，有了 docker 之后有一个 Dockerfile 不就能构建容器了吗？为什么还需要一个新的 Build 系统？
 
-Knative 的特别之处在于两点：一是它的构建完成是在 kubernetes 中进行的，和整个 kubernetes 生态结合更紧密；另外，它旨在提供一个通用的标准化的构建组件，可以作为其他更大系统中的一部分。
+Knative 的特别之处在于两点：一是它的构建完全是在 kubernetes 中进行的，和整个 kubernetes 生态结合更紧密；另外，它旨在提供一个通用的标准化的构建组件，可以作为其他更大系统中的一部分。
 
-正如官方文档中的说的那样，更多是为了定义标准化、可移植、可重用、性能高效的构建方法：
+正如官方文档中的说的那样，是为了定义标准化、可移植、可重用、性能高效的构建方法：
 
 > The goal of a Knative build is to provide a standard, portable, reusable, and performance optimized method for defining and running on-cluster container image builds.
 
@@ -85,9 +85,12 @@ spec:
     args: ['echo', 'hello-example', 'build']
 ```
 
-其中，`serviceAccountName` 是构建过程中需要用到的密码和认证信息（比如连接到 git repo 的 SSH keys、push 镜像到 registry 的用户名和密码等）；`source` 是代码信息，比如这里的 git 地址和分支；`steps` 是真正运行过程中的各个步骤，这个示例中的步骤只是作为 demo，真正的构建过程一般是 pull 代码、 build 镜像和 push镜像到 registry 等逻辑。
+其中，`serviceAccountName` 是构建过程中需要用到的密码和认证信息（比如连接到 git repo 的 SSH keys、push 镜像到 registry 的用户名和密码等）；
+`source` 是代码信息，比如这里的 git 地址和分支；`steps` 是真正运行过程中的各个步骤。
+这个示例中的步骤只是作为 demo，真正的构建过程一般是 pull 代码、 build 镜像和 push镜像到 registry 等逻辑。
 
-因为大部分的构建过程都是一致的，因此 knative 还提供了 `Build template` 的概念，Build template 封装了预先定义好的构建过程（就是封装了上面的 `steps` 过程），并提供了非常简单的配置参数来使用。
+因为大部分的构建过程都是一致的，因此 knative 还提供了 `Build template` 的概念，
+Build template 封装了预先定义好的构建过程（就是封装了上面的 `steps` 过程），并提供了非常简单的配置参数来使用。
 
 使用 build template 构建容器镜像就更简单了，只需要提供代码的地址和镜像名字即可，比如下面是使用 Google kaniko 模板构建 github 源码的 yaml 文件（需要在代码根目录存在 Dockerfile 文件）：
 
@@ -118,7 +121,7 @@ serving 的核心功能是让应用运行起来提供服务。
 * 自动化启动和销毁容器
 * 根据名字生成网络访问相关的 service、ingress 等对象
 * 监控应用的请求，并自动扩缩容
-* 支持蓝绿发布、回滚功能，方便应用方法流程
+* 支持蓝绿发布、回滚功能，方便应用发布流程
 
 knative serving 功能是基于 kubernetes 和 istio 开发的，它使用 kubernetes 来管理容器（deployment、pod），istio 来管理网络路由（VirtualService、DestinationRule）。
 
@@ -196,11 +199,11 @@ knative 是 2018 年 7月才刚刚对外开放，虽然内部已经开发一段�
 
 knative 也是脱产于 google 和 CNCF，因此整个社区运行方式和目标与之前的 kubernetes 以及 istio 非常相似。社区根据组件分成多个 Working Group，每个 Group 独立负责自己的功能，所有的开源活动（文档、视频、代码）都是开放的。另外，CloudEvents 作为 knative 依赖的标准，目标也是成为 CRI、CNI、CSI 这种类似的标准。
 
-knative 社区目前非常活跃，已 `github.com/knative/serving` 项目为例，一个月已经有 600+ star，目前有 60+ contributor，900+ commits，而且入门的文档和教程都已经非常全面。
+knative 社区目前非常活跃，以 `github.com/knative/serving` 项目为例，一个月已经有 600+ star，目前有 60+ contributor，900+ commits，而且入门的文档和教程都已经非常全面。
 
 ## Knative 应用场景和思考
 
-knative 基于 kubernetes 和 istio 的 serverless 开源实现，目标是为了提供更高层次的抽象，让开发者无需关注基础设施（虚拟机或者容器，网络配置，容量规划），而专注于业务代码即可。更多关于 knative 的使用场景可以参考 AWS Lambda 或者其他相关的文档，这里不再赘述，主要讲讲 knative 目前的局限性或者问题：
+knative 基于 kubernetes 和 istio 的 serverless 开源实现，目标是提供更高层次的抽象，让开发者无需关注基础设施（虚拟机或者容器，网络配置，容量规划），而专注于业务代码即可。更多关于 knative 的使用场景可以参考 AWS Lambda 或者其他相关的文档，这里不再赘述，主要讲讲 knative 目前的局限性或者问题：
 
 ### 1. 性能问题
 
@@ -212,19 +215,19 @@ knative 基于 kubernetes 和 istio 的 serverless 开源实现，目标是为�
 
 ### 2. 是否需要 istio 这一层？
 
-基于 kubernetes 的 serverless 组件非常多，比如 kubeless。但是基于同时又基于 istio，目前 knative 还是第一个这么做的。
+基于 kubernetes 的 serverless 组件非常多，比如 kubeless。但是基于 kubernetes 同时又基于 istio，目前 knative 还是第一个这么做的。
 
 有些人的疑问在于，knative 真的有必要基于 istio 来做吗？对于这个问题，我个人的看法是必要的。
 
 虽然 istio 才刚刚release 1.0 版本，但是它作为集群基础设施通用网络层的地位已经开始显露，相信在未来的发展中接受度会越来越大，并逐渐巩固自己的地位。虽然现阶段来说，很多人并不非常熟悉 istio 的情况，但是从长远角度来看，这一点将是 knative 的一个优势所在。
 
-另外，基于 istio 构建自己的 serverless 服务，也符合目前软件行业不要重复造轮子的工作。istio 在集群的网络管理方面非常优秀（智能路由、负载均衡、蓝绿发布等），基于 istio 来做可以让 knative 不用重复工作就能直接使用 istio 提供的网络通用功能。
+另外，基于 istio 构建自己的 serverless 服务，也符合目前软件行业不要重复造轮子的思路。istio 在集群的网络管理方面非常优秀（智能路由、负载均衡、蓝绿发布等），基于 istio 来做可以让 knative 不用重复工作就能直接使用 istio 提供的网络通用功能。
 
 ### 3. 系统复杂度
 
 这一点和上面类似，knative 下面已经有两个非常复杂的平台：kubernetes 和 istio。这两个平台的理解、构建、运维本身就很复杂，如今又加上 knative 整个平台，需要了解的概念都要几十个，更不要提落地过程中会遇到的各种问题。
 
-对于公有云来说，kubernetes 和 istio 这些底层平台可以交给云供应商来维护（比如 google Function），但是对于内部构建来说，这无疑提高了整个技术门槛，对系统管理人来的要求更高。
+对于公有云来说，kubernetes 和 istio 这些底层平台可以交给云供应商来维护（比如 google Function），但是对于内部构建来说，这无疑提高了整个技术门槛，对系统管理人员的要求更高。
 
 如何安装部署整个集群？如何对集群做升级？出现问题怎么调试和追踪？怎么更好地和内部的系统对接？这些系统的最佳实践是什么？怎么做性能优化？所有这些问题都需要集群管理人员思考并落实。
 
@@ -234,7 +237,7 @@ knative 基于 kubernetes 和 istio 的 serverless 开源实现，目标是为�
 
 * 如何快速找到某个函数？
 * 如何知道一个函数的功能是什么？接受的参数是什么？
-* 怎么保证函数的升级不会破坏原有的功能？升级之后如何回滚？怎么记录函数的历史版本一方面追溯？
+* 怎么保证函数的升级不会破坏原有的功能？升级之后如何回滚？怎么记录函数的历史版本方面追溯？
 * 当有多个函数需要同时工作的时候，怎么定义它们之间的关系？
 * 函数出现问题的时候如何调试？
 
@@ -247,7 +250,7 @@ knative 基于 kubernetes 和 istio 的 serverless 开源实现，目标是为�
 最后一点是关于 knative 成熟度的，前面已经提到，knative 目前刚出现不久。虽然整个框架和设计都已经搭好了，但是很多实现都比较初级。这里提几点来说：
 
 * 为了实现 autoscaling，knative 在每个 pod 中添加一个叫做 queue proxy 的代理，它会自动把请求的 metrics 发送给 autoscaler 组件作为参考。这样一来，整个网络链路上又多了一层，对整个性能势必会有影响，未来的打算是直接使用 envoy sidecar 来替换掉 queue proxy
-* 支持的事件源和消息系统还还优先，外部事件只支持 github、kubernetes 和 Google PubSub。 这个问题可以慢慢扩展，knative 本身会实现很常用的事件类型，自定义的事件源用户可以自己实现
+* 支持的事件源和消息系统还很有限，外部事件只支持 github、kubernetes 和 Google PubSub。 这个问题可以慢慢扩展，knative 本身会实现很常用的事件类型，自定义的事件源用户可以自己实现
 * 目前还没有函数的 pipeline 管理（类似 AWS Lambda Step Functions），多个函数如何协作并没有自己处理。虽然没有在官方文档中看到这方面的 roadmap，但是以后一定会有这方面的功能（不管是 knative 本身来做，还是社区作为工具补充来实现）
 
 这方面的问题都不是大事情，随着 knative 版本的迭代，在很快的时间都能够解决。
