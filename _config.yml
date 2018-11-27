@@ -88,3 +88,13 @@ deploy:
   type: git
   repo: https://github.com/cizixs/cizixs.github.io
   branch: master
+
+feed:
+  type: atom
+  path: feed.xml
+  limit: 30
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
