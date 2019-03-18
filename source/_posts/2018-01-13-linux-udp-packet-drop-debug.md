@@ -4,7 +4,7 @@ title: "linux 系统 UDP 丢包问题分析思路"
 excerpt: "最近工作中遇到某个服务器应用程序 UDP 丢包，在排查过程中查阅了很多资料，总结出来这篇文章，供更多人参考。"
 categories: blog
 tags: [linux, udp, network, performance]
-cover_img: http://cizixs.u.qiniudn.com/clock.JPG
+cover_img: https://ws3.sinaimg.cn/large/006tKfTcly1g1791nq6vgj318z0u0npk.jpg
 comments: true
 share: true
 ---

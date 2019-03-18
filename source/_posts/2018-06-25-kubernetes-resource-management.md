@@ -4,7 +4,7 @@ title: "kubernetes 资源管理概述"
 excerpt: "kubernetes 从创建之初的核心模块之一就是资源调度，想要在生产环境使用好 kubernetes，必须对它的资源模型，以及资源管理非常了解，这篇文章算是对散布在网络上的 kubernetes 资源管理内容的一个总结。"
 categories: blog
 tags: [kubernetes, container, monitor, docker]
-cover_img: http://cizixs.u.qiniudn.com/C853AC4B-DF7A-431A-97FF-FAB5E6218F4B.JPG
+cover_img: https://ws1.sinaimg.cn/large/006tKfTcly1g1792k1hocj31hc0u0e89.jpg
 comments: true
 share: true
 ---
