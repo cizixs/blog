@@ -12,16 +12,18 @@ excerpt: "Cizixs, a simple human being."
 
 ## 项目
 
-- 本博客，使用 github pages 和 Jekyll 搭建，源码放在 https://github.com/cizixs/cizixs.github.io
+- 本博客，使用 github pages 和 Jekyll 搭建，源码放在 [github](https://github.com/cizixs/cizixs.github.io)
 - [gohttp](https://github.com/cizixs/gohttp)：一个 go 语言的 http 客户端
 
 ## 关于博客和转载
 
-博客中的文章，如果没有特殊说明，都是个人原创。**如果需要转载博客中文章，请注明转载，并出处！**
+博客中的文章，如果没有特殊说明，都是个人原创，文章的题图大多数也是我拍摄的照片。
+
+**如果需要转载博客中文章，请注明转载，并出处！**
 
 觉得本博客有用的话，可以[邮件订阅](http://eepurl.com/c5iqVz)，文章有更新，第一时间通知你。
 
-## 广告
+## 招聘广告
 
 目前蚂蚁金服容器平台在招聘 docker、kubernetes 相关的容器开发岗位，负责开发和维护内部的容器平台（包括基于 kubernetes 二次开发的容器平台，以及 PaaS 平台），我们也在探索 Service Mesh、cloud native、serverless 等理念在蚂蚁的落地和实践，有很多的问题需要解决，同时也有很多的机会。
 
