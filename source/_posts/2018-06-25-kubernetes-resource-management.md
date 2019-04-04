@@ -48,7 +48,7 @@ CPU 的使用时间是可压缩的，换句话说它本身无状态，申请资�
 
 这两块预留之后的资源才是 pod 真正能使用的，不过考虑到 eviction 机制（下面的章节会提到），kubelet 会保证节点上的资源使用率不会真正到 100%，因此 pod 的实际可使用资源会稍微再少一点。主机上的资源逻辑分配图如下所示：
 
-![kubernetes reserved resource](https://i.loli.net/2018/06/25/5b3106f947190.png)
+![kubernetes reserved resource](https://ws1.sinaimg.cn/large/006tNc79ly1g1qxoxsulyj31b10qo76a.jpg)
 
 **NOTE：**需要注意的是，allocatable 不是指当前机器上可以分配的资源，而是指能分配给 pod 使用的资源总量，一旦 kubelet 启动这个值是不会变化的。
 
@@ -174,7 +174,7 @@ kubernetes 把 pod 分成了三个 QoS 等级：
 
 Pod 的 requests 和 limits 是如何对应到这三个 QoS 等级上的，可以用下面一张表格概括：
 
-![pod QuS mapping](https://i.loli.net/2018/06/25/5b307f4bc7d42.png)
+![pod QuS mapping](https://ws4.sinaimg.cn/large/006tNc79ly1g1qxpm62noj30p40d0tak.jpg)
 
 看到这里，你也许看出来一个问题了：**如果不配置 requests 和 limits，pod 的 QoS 竟然是最低的**。没错，所以推荐大家理解 QoS 的概念，并且按照需求**一定要给 pod 配置 requests 和 limits 参数**，不仅可以让调度更准确，也能让系统更加稳定。
 
@@ -182,7 +182,7 @@ Pod 的 requests 和 limits 是如何对应到这三个 QoS 等级上的，可�
 
 Pod 的 QoS 还决定了容器的 OOM（out-of-memory）值，它们对应的关系如下：
 
-![pod QoS oom score](https://i.loli.net/2018/06/25/5b307a5b3557c.png)
+![pod QoS oom score](https://ws2.sinaimg.cn/large/006tNc79ly1g1qxqj256ej30pa04374p.jpg)
 
 可以看到，QoS 越高的 pod oom 值越低，也就越不容易被系统杀死。对于 Bustable pod，它的值是根据 request 和节点内存总量共同决定的:
 
@@ -231,7 +231,7 @@ Pod 的驱逐是在 kubelet 中实现的，因为 kubelet 能动态地感知到�
 
 下面这图是具体的触发条件：
 
-![eviction conddition](https://i.loli.net/2018/06/24/5b2f1a966a703.png)
+![eviction condition](https://ws3.sinaimg.cn/large/006tNc79ly1g1qxrm6zfcj310m06ajst.jpg)
 
 有了数据的来源，另外一个问题是触发的时机，也就是到什么程度需要触发驱逐程序？kubernetes 运行用户自己配置，并且支持两种模式：按照百分比和按照绝对数量。比如对于一个 32G 内存的节点当可用内存少于 10% 时启动驱逐程序，可以配置 `memory.available<10%`或者 `memory.available<3.2Gi`。
 

@@ -4,7 +4,7 @@ title: "serverless 平台 knative 简介"
 excerpt: "knative 是谷歌开源的 serverless 架构方案，旨在提供一套简单易用的 serverless 方案，把 serverless 标准化。目前参与的公司主要是 Google、Pivotal、IBM、Red Hat，2018年7月24日才刚刚对外发布，当前还处于快速发展的阶段."
 categories: blog
 tags: [kubernetes, container, serverless, knative]
-cover_img: https://i.loli.net/2018/08/25/5b811d40e22bb.png
+cover_img: https://ws1.sinaimg.cn/large/006tNc79ly1g1qxmw04tmj30qt09smxr.jpg
 comments: true
 share: true
 ---
@@ -43,7 +43,7 @@ hello, world from Awesome FaaS App!
 
 knative 建立在 kubernetes 和 istio 平台之上，使用 kubernetes 提供的容器管理能力（deployment、replicaset、和 pods等），以及 istio 提供的网络管理功能（ingress、LB、dynamic route等）。
 
-![knative with istio and kubernetes](https://i.loli.net/2018/08/25/5b811d40e22bb.png)
+![knative with istio and kubernetes](https://ws4.sinaimg.cn/large/006tNc79ly1g1qxs8g0vej30qt09smxr.jpg)
 
 ## knative 核心概念和原理
 
@@ -127,7 +127,7 @@ knative serving 功能是基于 kubernetes 和 istio 开发的，它使用 kuber
 
 因为 kubernetes 和 istio 本身的概念非常多，理解和管理起来比较困难，knative 在此之上提供了更高一层的抽象（这些对应是基于 kubernetes 的 CRD 实现的）。这些抽象出来的概念对应的关系如下图：
 
-![knative serving terminology](https://i.loli.net/2018/08/25/5b81211da0309.png)
+![knative serving terminology](https://ws1.sinaimg.cn/large/006tNc79ly1g1qxu9218oj31ck0qmwgu.jpg)
 
 * Configuration：应用的最新配置，也就是应用目前期望的状态，对应了 kubernetes 的容器管理（deployment）。每次应用升级都会更新 configuration，而 knative 也会保留历史版本的记录（图中的 revision），结合流量管理，knative 可以让多个不同的版本共同提供服务，方便蓝绿发布和滚动升级
 * Route：应用的路由规则，也就是进来的流量如何访问应用，对应了 istio 的流量管理（VirtualService）
