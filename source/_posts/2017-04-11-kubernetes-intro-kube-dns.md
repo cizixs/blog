@@ -249,13 +249,13 @@ CONTAINER ID        IMAGE                                              COMMAND  
 - kube2sky： 通过 kubernetes API 监听 Service 的变化，然后同步到 etcd
 - [skyDNS](https://github.com/skynetservices/skydns)：根据 etcd 中的数据，对外提供 DNS 查询服务
 
-![](https://ww3.sinaimg.cn/large/006tNc79gy1feisvkwauej30p00a1gm0.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1feisvkwauej30p00a1gm0.jpg)
 
 ### kubeDNS 模式
 
 这种模式下，`kubeDNS` 容器替代了原来的三个容器的功能，它会监听 apiserver 并把所有 service 和 endpoints 的结果在内存中用合适的数据结构保存起来，并对外提供 DNS 查询服务。
 
-![](https://ww2.sinaimg.cn/large/006tNbRwgy1feiswjz6hgj30p00a174j.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1feiswjz6hgj30p00a174j.jpg)
 
 - [kubeDNS](https://github.com/kubernetes/dns)：提供了原来 kube2sky + etcd + skyDNS 的功能，可以单独对外提供 DNS 查询服务
 - [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html)： 一个轻量级的 DNS 服务软件，可以提供 DNS 缓存功能。kubeDNS 模式下，dnsmasq 在内存中预留一块大小（默认是 1G）的地方，保存当前最常用的 DNS 查询记录，如果缓存中没有要查找的记录，它会到 kubeDNS 中查询，并把结果缓存起来

@@ -118,7 +118,7 @@ Calico node started successfully
 
 在每个节点运行都不部署 calico 容器之后，calico 网络集群就搭建好了。接下来我们会创建两个网络，并测试 calico 跨主机网络的连通性，最终的网络示意图如下：
 
-![](https://ws1.sinaimg.cn/large/006tNc79gy1fkgfg04nwbj31hc0u0qb0.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fkgfg04nwbj31hc0u0qb0.jpg)
 
 图中只展示了两个节点，每个节点有两个容器，其中蓝色容器在同一个网络，红色容器在另外一个网络。
 
@@ -471,4 +471,4 @@ calico 的核心是通过维护路由规则实现容器的通信，路由信息�
 - [calico: Frequently Asked Questions](https://docs.projectcalico.org/v2.6/usage/troubleshooting/faq)
 
 
-  [1]: https://ws3.sinaimg.cn/large/006tNc79gy1fkgfhzbl9kj31hc0u047e.jpg
+  [1]: https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fkgfhzbl9kj31hc0u047e.jpg

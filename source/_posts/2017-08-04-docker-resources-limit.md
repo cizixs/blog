@@ -75,7 +75,7 @@ stress: dbug: [1] --> hogcpu worker 1 [10] forked
 
 在另外一个 terminal 使用 `htop` 查看资源的使用情况：
 
-![](https://ws2.sinaimg.cn/large/006tKfTcgy1fi6z1alsu4j30yz073myh.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fi6z1alsu4j30yz073myh.jpg)
 
 从上图中可以看到，CPU 四个核资源都达到了 100%。四个 stress 进程 CPU 使用率没有达到 100% 是因为系统中还有其他机器在运行。
 
@@ -96,7 +96,7 @@ stress: dbug: [1] --> hogcpu worker 1 [9] forked
 
 因为默认情况下，容器的 CPU share 为 1024，所以这两个容器的 CPU 使用率应该大致为 2：1，下面是启动第二个容器之后的监控截图：
 
-![](https://ws4.sinaimg.cn/large/006tKfTcgy1fi6z6elptfj310309mmz9.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fi6z6elptfj310309mmz9.jpg)
 
 两个容器分别启动了四个 `stress` 进程，第一个容器 `stress` 进程 CPU 使用率都在 54% 左右，第二个容器 `stress` 进程 CPU 使用率在 25% 左右，比例关系大致为 2：1，符合之前的预期。
 
@@ -118,7 +118,7 @@ stress: dbug: [1] --> hogcpu worker 1 [9] forked
 ```
 在容器里启动三个 stress 来跑 CPU 压力，如果不加限制，这个容器会导致 CPU 的使用率为 300% 左右（也就是说会占用三个核的计算能力）。实际的监控如下图：
 
-![](https://ws1.sinaimg.cn/large/006tKfTcgy1fi6zckqjtlj310306w0tu.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fi6zckqjtlj310306w0tu.jpg)
 
 可以看到，每个 `stress` 进程 CPU 使用率大约在 50%，总共的使用率为 150%，符合 1.5 核的设置。
 
@@ -148,7 +148,7 @@ stress: dbug: [1] --> hogcpu worker 1 [8] forked
 
 这样，监控中可以看到只有前面两个核 CPU 达到了 100% 使用率。
 
-![](https://ws4.sinaimg.cn/large/006tKfTcgy1fi6zk7gwt1j30z706cjsb.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fi6zk7gwt1j30z706cjsb.jpg)
 
 `--cpuset-cpus` 参数可以和 `-c --cpu-shares` 一起使用，限制容器只能运行在某些 CPU 核上，并且配置了使用率。
 

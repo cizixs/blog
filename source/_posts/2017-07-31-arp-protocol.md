@@ -29,7 +29,7 @@ ARP 的全称是  Address Resolution Protocol，直译过来是 **地址解析�
 
 最开始的时候，机器 A 只知道目的地址的 IP（用户用某种方式输入 IP 地址，或者通过 DNS 解析出来 IP 地址），不知道对方的 MAC 地址。这时候，机器 A 会发送 ARP 报文，去查询机器 B 的 MAC 地址，拿到 MAC 地址，就能完成通信的过程。
 
-![](https://ws3.sinaimg.cn/large/006tNc79gy1fi242uryyqj30g90e374i.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fi242uryyqj30g90e374i.jpg)
 
 ARP 协议的内容，以及怎么拿到 MAC 地址就是这篇文章接下来要讲解的。
 
@@ -39,7 +39,7 @@ ARP 协议的内容，以及怎么拿到 MAC 地址就是这篇文章接下来�
 
 在 Linux 系统中，可以通过 `ip neighbour`（可以简写为 `ip neigh`） 命令管理 ARP 缓存。为了说明 Linux 系统中 ARP 的工作原理，我会在自己的机器上进行试验。试验环境如下图所示：
 
-![](https://ws2.sinaimg.cn/large/006tNc79gy1fi28tjdwdmj30qh0fjmyk.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fi28tjdwdmj30qh0fjmyk.jpg)
 
 我的工作机器是 A，IP 地址是 `172.16.13.16`，我会 `ping` 另外一台和 A 在同一个以太网的机器 B（IP 地址是 `172.16.13.18`），并查看 A 上 ARP 缓存的情况。
 
@@ -116,14 +116,14 @@ ARP 发送出去会被封装在以太网帧里，ARP 报文中有发送端的 MA
 **第四步**：机器 A 接收到 B 发来的 ARP 应答，读取报文中 B 的 MAC 地址，使用这个 MAC 地址和机器 B 进行后续的通信，同时把它缓存到系统中
 
 从机器 A `ping` 机器 B 时，用 `wireshark` 抓包，过滤出其中的 ARP，显示的结果如图：
-![arp 协议流程](https://ws4.sinaimg.cn/large/006tNc79gy1fi23aa7xbbj30xa03nmxo.jpg)
+![arp 协议流程](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fi23aa7xbbj30xa03nmxo.jpg)
 
 可以看到一共有两对 ARP 请求应答的过程，我们来逐个分析。
 
 ### ARP 请求报文
 
 首先是机器 A 发送的 ARP 请求，详细的报文内容如下：
-![ARP 请求报文](https://ws3.sinaimg.cn/large/006tNc79gy1fi23ccvypmj30ws0e6wgn.jpg)
+![ARP 请求报文](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fi23ccvypmj30ws0e6wgn.jpg)
 
 报文列表的 `Info` 字段，对应的内容是：
 
@@ -142,7 +142,7 @@ ARP 发送出去会被封装在以太网帧里，ARP 报文中有发送端的 MA
 ### ARP 应答报文
 
 第二个报文是 ARP 应答，详细报文内容如下图：
-![ARP 应答报文](https://ws1.sinaimg.cn/large/006tNc79gy1fi23cw2798j30xl0en76n.jpg)
+![ARP 应答报文](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fi23cw2798j30xl0en76n.jpg)
 
 这个报文的 `info` 字段的信息是:
 
@@ -200,7 +200,7 @@ From 172.16.13.16 icmp_seq=6 Destination Host Unreachable
 
 此时，使用 wireshark 抓包，发现网络上的 ARP 报文如下所示：
 
-![向不存在的主机发送 ping 请求](https://ws2.sinaimg.cn/large/006tNc79gy1fi23dacq3qj30xi09htbb.jpg)
+![向不存在的主机发送 ping 请求](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fi23dacq3qj30xi09htbb.jpg)
 
 和 ICMP 报文类似，ARP 请求也会每秒都会发送，但是一直接收不到应答。
 

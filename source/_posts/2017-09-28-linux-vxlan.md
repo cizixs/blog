@@ -38,7 +38,7 @@ Linux 对 vxlan 协议的支持时间并不久，2012 年 Stephen Hemminger 才�
 
 我们先来搭建一个最简单的 vxlan 网络，两台机器构成一个 vxlan 网络，每台机器上有一个 vtep，vtep 通过它们的 IP 互相通信。这次实验完成后的网络结构如下图所示：
 
-![](https://ws1.sinaimg.cn/large/006tKfTcgy1fjy54027bgj31hc0u0tde.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fjy54027bgj31hc0u0tde.jpg)
 
 首先使用 `ip` 命令创建我们的 vxlan interface：
 
@@ -117,7 +117,7 @@ rtt min/avg/max/mdev = 0.427/0.911/1.844/0.659 ms
 
 这个实验和前面一个非常相似，只不过主机之间不是点对点的连接，而是通过多播组成一个虚拟的整体。最终的网络架构也很相似（为了简单图中只有两个主机，但这个模型可以容纳多个主机组成 vxlan 网络）：
 
-![](https://ws1.sinaimg.cn/large/006tKfTcgy1fjy54jqv9xj31hc0u0n2d.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fjy54jqv9xj31hc0u0n2d.jpg)
 
 可能听起来要加入同一个多播组挺复杂的，但实际上非常简单，先上命令：
 
@@ -160,7 +160,7 @@ root@node0:~# bridge fdb
 
 在这个过程中，在主机上抓包更容易看到通信的具体情况，下面是 ARP 请求报文的详情：
 
-![](https://ws3.sinaimg.cn/large/006tKfTcgy1fjyb6b5ybdj30x20lq11q.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fjyb6b5ybdj30x20lq11q.jpg)
 
 可以看到 vxlan 报文可以分为三块：
 
@@ -170,7 +170,7 @@ root@node0:~# bridge fdb
 
 而 ARP 应答报文不是多播而是单播的事实也能看出来：
 
-![](https://ws1.sinaimg.cn/large/006tKfTcgy1fjybddu0boj31kw11ekaq.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fjybddu0boj31kw11ekaq.jpg)
 
 从上面的通信过程，可以看出不少信息：
 
@@ -199,7 +199,7 @@ d6:d9:cd:0a:a4:28 dev vxlan0 dst 192.168.8.101 self
 
 在 linux 中把同一个网段的 interface 组织起来正是网桥（bridge，或者 switch，这两个名称等价）的功能，因此这部分我们介绍如何用网桥把多个虚拟机或者容器放到同一个 vxlan overlay 网络中。最终实现的网络架构如下图所示：
 
-![](https://ws2.sinaimg.cn/large/006tKfTcgy1fjy5517ktoj31hc0u0n39.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fjy5517ktoj31hc0u0n39.jpg)
 
 因为创建虚拟机或者容器比较麻烦，我们用 network namespace 来模拟，从理论上它们是一样的。关于 network namespace 和 veth pair 的基础知识，请参考我[之前的介绍文章](http://cizixs.com/2017/02/10/network-virtualization-network-namespace)。
 
@@ -261,7 +261,7 @@ $ ./set_container br0 container4 10.20.1.4/24
 
 从逻辑上可以认为，在 `vxlan1` 的帮助下同一个 vxlan overlay 网络中的容器是连接到同一个网桥上的，示意图如下：
 
-![](https://ws2.sinaimg.cn/large/006tKfTcgy1fjy55dn4shj31hc0u0ag5.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fjy55dn4shj31hc0u0ag5.jpg)
 
 多播实现很简单，不需要中心化的控制。但是不是所有的网络都支持多播，而且需要事先规划多播组和 VNI 的对应关系，在 overlay 网络数量比较多时也会很麻烦，多播也会导致大量的无用报文在网络中出现。现在很多云计算的网络都会通过自动化的方式来发现 vtep 和 MAC 信息，也就是自动构建 vxlan 网络。下面的几个部分，我们来解开自动化 vxlan 网络的秘密。
 
@@ -440,7 +440,7 @@ root@node0:~# bridge fdb add b2:ee:aa:42:8b:0b dst 192.168.8.101 dev vxlan0
 
 虽然上述的实验中，为了简化图中只有两台主机，而且只有一个 vxlan 网络，但是利用相同的操作很容易创建另外一个 vxlan 网络（必须要保证 vtep 的 VNI 值不同，如果使用多播，也要保证多播 IP 不同），如下图所示：
 
-![](https://ws3.sinaimg.cn/large/006tKfTcgy1fjy55xwqxuj31hc0u0gqo.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fjy55xwqxuj31hc0u0gqo.jpg)
 
 主机会根据 VNI 来区别不同的 vxlan 网络，不同的 vxlan 网络之间不会相互影响。如果再加上 network namespace，就能实现更复杂的网络结构。
 

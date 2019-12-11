@@ -101,7 +101,7 @@ $ tcpdump -i docker0 -nn host 172.17.0.3
 
 通过搜索，发现这确实是个已知的问题。在 UNP（） 这本书中，已经描述过这个问题，下面是对应的内容：
 
-![](https://ws3.sinaimg.cn/large/006tKfTcgy1fiqmdohed0j31kw1je1kl.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fiqmdohed0j31kw1je1kl.jpg)
 
 这个问题可以归结为一句话：UDP 在多网卡的情况下，可能会发生服务器端源地址不对的情况，这是内核选路的结果。
 为什么 UDP 和 TCP 有不同的选路逻辑呢？因为 UDP 是无状态的协议，内核不会保存连接双方的信息，因此每次发送的报文都认为是独立的，socket 层每次发送报文默认情况不会指明要使用的源地址，只是说明对方地址。因此，内核会为要发出去的报文选择一个 ip，这通常都是报文路由要经过的设备 ip 地址。

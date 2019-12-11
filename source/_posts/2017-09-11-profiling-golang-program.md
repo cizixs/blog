@@ -4,7 +4,7 @@ title: "使用 pprof 和火焰图调试 golang 应用"
 excerpt: "在计算机性能调试领域里，profiling 就是对应用的画像，这里画像就是应用使用 CPU 和内存的情况。也就是说应用使用了多少 CPU 资源？都是哪些部分在使用？每个函数使用的比例是多少？有哪些函数在等待 CPU 资源？知道了这些，我们就能对应用进行规划，也能快速定位性能瓶颈。"
 categories: blog
 tags: [golang, pprof, flamegraph]
-cover_img: https://ws2.sinaimg.cn/large/006tKfTcly1g179aut87gj31lf0u0qq2.jpg
+cover_img: https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcly1g179aut87gj31lf0u0qq2.jpg
 comments: true
 share: true
 ---
@@ -146,7 +146,7 @@ pprof 不仅能打印出最耗时的地方(`top`)，还能列出函数代码以�
 
 其中一个非常便利的是 `web` 命令，在交互模式下输入 `web`，就能自动生成一个 `svg` 文件，并跳转到浏览器打开，生成了一个函数调用图：
 
-![](https://ws2.sinaimg.cn/large/006tKfTcgy1fjfq8wjqunj31fa0q3afd.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fjfq8wjqunj31fa0q3afd.jpg)
 
 这个调用图包含了更多的信息，而且可视化的图像能让我们更清楚地理解整个应用程序的全貌。图中每个方框对应一个函数，方框越大代表执行的时间越久（包括它调用的子函数执行时间，但并不是正比的关系）；方框之间的箭头代表着调用关系，箭头上的数字代表被调用函数的执行时间。
 
@@ -225,7 +225,7 @@ pprof 已经支持动态的 web 浏览方式：https://github.com/google/pprof/c
 
 火焰图（Flame Graph）是 Bredan Gregg 创建的一种性能分析图表，因为它的样子近似 🔥而得名。上面的 profiling 结果也转换成火焰图，如果对火焰图比较了解可以手动来操作，不过这里我们要介绍一个工具：[go-torch](https://github.com/uber/go-torch)。这是 uber 开源的一个工具，可以直接读取 golang profiling 数据，并生成一个火焰图的 svg 文件。
 
-![](https://ws3.sinaimg.cn/large/006tKfTcgy1fjc5nh6x52j30xc0litck.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fjc5nh6x52j30xc0litck.jpg)
 
 火焰图 svg 文件可以通过浏览器打开，它对于调用图的最优点是它是动态的：可以通过点击每个方块来 zoom in 分析它上面的内容。
 

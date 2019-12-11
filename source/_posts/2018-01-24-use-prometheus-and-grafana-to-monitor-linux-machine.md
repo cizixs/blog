@@ -4,7 +4,7 @@ title: "使用 promethues 和 grafana 监控自己的 linux 机器"
 excerpt: "最近在研究如何给应用添加合适的 metrics，用来分析应用的使用情况以及调试，整体思路是使用 promethues 收集数据，grafana 进行数据的展示。过程中发现了 node-exporter 项目，觉得可以直接拿来监控自己平时使用的 linux 机器，就有了这篇文章。"
 categories: blog
 tags: [linux, prometheus, grafana, monitor, docker]
-cover_img: https://ws4.sinaimg.cn/large/006tKfTcly1g179ehuw56j31550qidnt.jpg
+cover_img: https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcly1g179ehuw56j31550qidnt.jpg
 comments: true
 share: true
 ---
@@ -62,7 +62,7 @@ scrape_configs:
 
 `scrape_configs` 配置了每个抓取任务，因此是一个列表，这里我们只有一个任务，那就是抓取 promethues 本身的 metrics。配置里面最重要的是 `static_configs.targets`，表示要抓取任务的 HTTP 地址，默认会在 `/metrics` url 出进行抓取，比如这里就是 `http://localhost:9090/`。 这是 prometheus 本身提供的监控数据，可以在浏览器中直接查看。
 
-![](https://ws2.sinaimg.cn/large/006tNc79gy1fn9hdcuslmj30rd0l27b4.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fn9hdcuslmj30rd0l27b4.jpg)
 
 每个数据都是有一个名字和一系列称为 label 的键值对组成的，prometheus 在抓取数据的时候还会自动添加上 `instance`（节点的 host:port 标识） 和 `job`（任务名称） 两个 label 作为任务之间的区分。
 
@@ -70,11 +70,11 @@ scrape_configs:
 
 运行 `docker-compose up -d` 启动服务，然后在浏览器中打开 `http://server-ip:9090/status` 查看 promethues 运行的状态信息：
 
-![](https://ws2.sinaimg.cn/large/006tNc79gy1fn9h9plxmtj30rd0l2tb2.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fn9h9plxmtj30rd0l2tb2.jpg)
 
 整个 promethues 体系的工作原理如下所示：
 
-![](https://ws3.sinaimg.cn/large/006tNc79gy1fnacyud8n5j30ko0e5jso.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fnacyud8n5j30ko0e5jso.jpg)
 
 - promethues server 位于中心，负责时序数据的收集、存储和查询
 - 左边是数据来源，promethues 统一采用拉取的模式（pull mode）从兼容的 HTTP 接口处获取数据，数据源可以分为三种
@@ -175,11 +175,11 @@ docker-compose 运行之后，grafana 会运行在 `http://host-ip:3000` 地址�
 
 grafana 本身只是一个 dashboard，它可以从多个数据源（时序数据库）中获取数据进行展示，比如我们这里使用的 promethues。所以在正式配置界面之前，需要先添加数据源，点击 grafana 左上角按钮找到 `Data Sources` 页面或者直接输入 `http://host-ip:3000/datasources` 地址，会进入对应页面。按照下面的内容进行填写，主要是 Type 要选择 `prometheus`，URL 添加 grafana 服务能访问的 promethues 地址（因为它们都是通过 docker-compose 运行的，所以这里可以直接使用名字来标识）；Name 字段随便填写一个用来标记来源的名字即可。
 
-![](https://ws3.sinaimg.cn/large/006tNc79gy1fnhfgtpz5yj310j0s2adm.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fnhfgtpz5yj310j0s2adm.jpg)
 
 然后创建一个 dashboard，并里面添加 graph（为了简单，我用了 test dashboard 这个名字），在 graph 中添加一个 panel，我们用这个 panel 展示系统的 load 数据。编辑 panel 数据，选择 data source 为之前添加的 promethues，然后填写 query，系统 node 比较简单，一共是 `node_load1`、`node_load5` 和 `node_load15`，分别是系统最近一分钟、五分钟和十五分钟的 load 数值。输入完成后点击输入框之外，grafana 会自动更新上面的图表：
 
-![](https://ws1.sinaimg.cn/large/006tKfTcgy1fnhhktp3i4j313a0ut43t.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fnhhktp3i4j313a0ut43t.jpg)
 
 类似的，可以添加其他的 panel，展示系统方方面的监控数据，比如 CPU、memory、IO、网络等。grafana 更多配置可以参考[官方文档](http://docs.grafana.org/features/panels/graph/)，选择合适的图表来展示想要的结果。
 
@@ -187,7 +187,7 @@ grafana 本身只是一个 dashboard，它可以从多个数据源（时序数�
 
 每个 dashboard 都有一个编号，比如[编号 22 的 dashboard](https://grafana.com/dashboards/22) 就是专门为 node-exporter 设计的展示图表。在 grafana 中点击导入 dashboard，添加编号选择数据源，就能得到已经配置完整的图表：
 
-![](https://ws3.sinaimg.cn/large/006tKfTcgy1fnii0bgqqzj313v0utdl9.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fnii0bgqqzj313v0utdl9.jpg)
 
 如果对 dashboard 有什么不满，可以直接在页面进行添加和编辑，然后可以导出 json 文件，以便重复使用。
 
@@ -243,7 +243,7 @@ docker-compose stop node-exporter
 
 在 promethues 的告警页面(alert) 查看告警：
 
-![](https://ws2.sinaimg.cn/large/006tKfTcgy1fniiqnn2oij310r0ma0uw.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fniiqnn2oij310r0ma0uw.jpg)
 
 类似地，可以运行一些消耗 CPU 资源的服务来触发系统 load 过高的告警规则，比如运行下面这个 docker 容器（一直 while 循环霸占 CPU 资源可以轻松把 CPU load 提到很高）：
 

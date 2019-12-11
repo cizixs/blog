@@ -4,7 +4,7 @@ title: "linux 系统 UDP 丢包问题分析思路"
 excerpt: "最近工作中遇到某个服务器应用程序 UDP 丢包，在排查过程中查阅了很多资料，总结出来这篇文章，供更多人参考。"
 categories: blog
 tags: [linux, udp, network, performance]
-cover_img: https://ws3.sinaimg.cn/large/006tKfTcly1g1791nq6vgj318z0u0npk.jpg
+cover_img: https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcly1g1791nq6vgj318z0u0npk.jpg
 comments: true
 share: true
 ---
@@ -18,7 +18,7 @@ share: true
 3. 内核从 ring buffer 中读取报文进行处理，执行 IP 和 TCP/UDP 层的逻辑，最后把报文放到应用程序的 socket buffer 中
 4. 应用程序从 socket buffer 中读取报文进行处理
 
-![](https://ws4.sinaimg.cn/large/006tKfTcgy1fnf8b0c64xj31hc0u0goa.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fnf8b0c64xj31hc0u0goa.jpg)
 
 在接收 UDP 报文的过程中，图中任何一个过程都可能会主动或者被动地把报文丢弃，因此丢包可能发生在网卡和驱动，也可能发生在系统和应用。
 

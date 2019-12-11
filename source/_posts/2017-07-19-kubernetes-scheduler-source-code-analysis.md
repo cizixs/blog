@@ -28,7 +28,7 @@ kubernetes Scheduler 运行在 master 节点，它的核心功能是监听 apise
 
 之前 [kubernetes 调度简介的文章](http://cizixs.com/2017/03/10/kubernetes-intro-scheduler)，我们介绍了调度分为两个过程：`predicate` 和 `priority`。这篇文章就继续深入到源码层面来解析 kubernetes 调度的过程。
 
-![](https://ws2.sinaimg.cn/large/006tKfTcgy1fhcxmspuz7j31260h6my6.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgy1fhcxmspuz7j31260h6my6.jpg)
 
 和其他组件不同，scheduler 的代码在 `plugin/` 目录下：`plugin/cmd/kube-scheduler/` 是代码的 main 函数入口，`plugin/pkg/scheduler/` 是具体调度算法。从这个目录结构也可以看出来，kube-scheduler 是作为插件接入到集群中的，它的最终形态一定是用户可以很容易地去定制化和二次开发的。
 
@@ -273,7 +273,7 @@ run := func(_ <-chan struct{}) {
 
 总结起来，`configFactory`、`config` 和 `scheduler` 三者的关系如下图所示：
 
-![](https://ws2.sinaimg.cn/large/006tNc79gy1fhozonecbkj30ov0gbjsn.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fhozonecbkj30ov0gbjsn.jpg)
 
 - `configFactory` 对应工厂模式的工厂模型，根据不同的配置和参数生成 `config`，当然事先会准备好 `config` 需要的各种数据
 - `config` 是调度器中最重要的组件，里面实现了调度的各个组件逻辑
@@ -347,7 +347,7 @@ func (s *Scheduler) scheduleOne() {
 
 对应的调度逻辑如下图所示：
 
-![](https://ws2.sinaimg.cn/large/006tNc79gy1fhozbohy5aj30nt0yp75g.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fhozbohy5aj30nt0yp75g.jpg)
 
 接下来我们逐步分解和解释。
 
@@ -686,7 +686,7 @@ func PrioritizeNodes(
 
 要想获得所有节点最终的权重分值，就要先计算每个优先级函数对应该节点的分值，然后计算总和。因此不管过程如何，如果有 N 个节点，M 个优先级函数，一定会计算 M*N 个中间值，构成一个二维表格：
 
-![](https://ws1.sinaimg.cn/large/006tNc79gy1fhpajksubhj316a0lo0uc.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fhpajksubhj316a0lo0uc.jpg)
 
 最后，会把表格中按照节点把优先级函数的权重列表相加，得到最终节点的分值。上面的代码就是这个过程，当然中间过程可以并发计算，以加快速度。
 

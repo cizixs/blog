@@ -12,7 +12,7 @@ share: true
 
 我们在之前的文章中[介绍过 kube-proxy 和 service](http://cizixs.com/2017/03/30/kubernetes-introduction-service-and-kube-proxy)的工作原理，以及它们的使用方法和功能。我们再来总结一下，`kube-proxy` 运行在 kubernetes 集群中每个 worker 节点上，负责实现 service 这个概念提供的功能。`kube-proxy` 会把访问 service VIP 的请求转发到运行的 pods 上，实现负载均衡。
 
-![](https://ww3.sinaimg.cn/large/006tNc79gy1fee5voyscmj31hm0p0gnm.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fee5voyscmj31hm0p0gnm.jpg)
 
 当用户创建 service 的时候，endpointController 会根据 service 的 selector 找到对应的 pod，然后生成 endpoints 对象保存到 etcd 中。kube-proxy 的主要工作就是监听 etcd（通过 apiserver 的接口，而不是直接读取 etcd），来实时更新节点上的 iptables。
 
@@ -285,7 +285,7 @@ func (s *serviceStore) Merge(source string, change interface{}) error {
 
 整个 `serviceConfig` 的逻辑是这样的：
 
-![](https://ww4.sinaimg.cn/large/006tNc79gy1fee66e8rbbj30wy0io40h.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fee66e8rbbj30wy0io40h.jpg)
 
 它对外暴露了一个 channel，任何写到这个 channel 中的数据，都会被 `mux` 自动保存到内部的 `serviceStore` 中，并往 `updates channel` 发一个通过，监听在 `updates channel` 另一端的 `bcaster` 接到通知，就调用处理函数 `proxier.OnServiceUpdate()` 去处理。
 
@@ -336,7 +336,7 @@ func NewServiceStore(store cache.Store, ch chan<- ServiceUpdate) cache.Store {
 
 `Reflector` 会从 `ListWatcher` 中读取要监听资源的变化，写到 `store` 对象中去。这部分的代码在 `pkg/client/cache/` ，不是本文的重点。简单说一下它的大致过程：它内部进入循环，调用 `servicesLW.wathc()` 方法，根据得到的数据更新 `serviceStore` 的值，这个 serviceStore 每次更新都会出发一个 `pushFunc` 把当前的数据写到 channel `ServiceUpdate` ，从而完成了和上面部分的对接！
 
-![](https://ww4.sinaimg.cn/large/006tNc79gy1fee6z9jczrj30sg0ig75i.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fee6z9jczrj30sg0ig75i.jpg)
 
 ### OnServiceUpdate：最终干活的人
 
@@ -413,7 +413,7 @@ func (proxier *Proxier) OnServiceUpdate(allServices []api.Service) {
 
 这个过程的流程图如下：
 
-![](https://ww3.sinaimg.cn/large/006tNc79gy1fee5sbtsraj31fy0oggnx.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fee5sbtsraj31fy0oggnx.jpg)
 
 ## 服务的运行
 

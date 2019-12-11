@@ -4,7 +4,7 @@ title: "raft 一致性算法"
 excerpt: "分布式系统有一个很重要的问题要解决，当一台机器出现问题时，我们希望整个集群还是能够正常运行的，以达到高可用的要求。因为系统的数据是不断变化的，所以要保证集群的数据是同步的，不然会出现数据混论或者丢失的情况。这就是一致性问题，raft 算法是分布式系统一致性的一个解决方案。"
 categories: blog
 tags: [raft, distributed-system]
-cover_img: https://ws1.sinaimg.cn/large/006tKfTcly1g17azdfi4sj318v0u0kjn.jpg
+cover_img: https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcly1g17azdfi4sj318v0u0kjn.jpg
 comments: true
 share: true
 ---
@@ -17,7 +17,7 @@ share: true
 
 分布式一致性问题可以抽象成下面这张图(分布式状态机 Replicated State Machine)：
 
-![](https://ws2.sinaimg.cn/large/006tNc79gy1fm3p3e0lnnj30sh09zwhg.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fm3p3e0lnnj30sh09zwhg.jpg)
 
 最终的目的是所有节点上保存的状态机器（文件内容）是一样的，这是通过各个节点上一致性模块之间的通信完成的，它们保证按顺序添加日志，然后把日志执行修改状态机的内容。如果机器初始状态相同，而且日志中记录顺序是一样的，那么最终的状态一定也是相同的。
 
@@ -56,14 +56,14 @@ raft 算法是基于 paxos 算法提出来的，主要是为了更加易懂，�
 - follower：负责处理 leader 和 candidate 请求的节点。如果客户端把请求发送给 follower 节点，它需要把请求转发给 leader，由 leader 统一负责管理
 - candidate：leader 的候选人，只是在选举过程中短暂出现的状态。如果通过选举，则会变成 leader；如果选举失败，还是会回到 follower 状态
 
-![](https://ws1.sinaimg.cn/large/006tNc79gy1fm40vgcvazj30y20j6tap.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fm40vgcvazj30y20j6tap.jpg)
 
 
 raft 算法还有一个任期（Term）的概念，任期是依次递增的编号，每次选举都是一个新的任期。**在一个任期内最多只能有一个 leader**，也就是说一个任期可以有一个 leader，表示正常工作；也可以没有 leader，表明选举失败。某个节点选举成功后，就成为当前任期的 leader，负责日志复制工作。
 
 任期的主要目的是保证所有节点逻辑时间上的一致，而不会出现过期的请求导致逻辑混乱的情况。
 
-![](https://ws3.sinaimg.cn/large/006tNc79gy1fm40vu4bbij30ya0e9q3f.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fm40vu4bbij30ya0e9q3f.jpg)
 
 每个节点都会保存一个当前任期的值，当节点通信时会交互当前任期的值，如果节点发现其他节点的当前任期比自己的大，就更新自己当前任期的值；如果 leader 节点发现有比自己大的任期值，则知道自己的任期过期了，集群中有更新的 leader 节点，它立即变成 follower 状态；如果节点接收到历史任期的请求，则直接无视（这很可能是因为网络延迟或者报文重复导致的）。
 
@@ -102,7 +102,7 @@ leader 节点会记录已经提交（commited）的最大日志 index，然后�
 
 当主节点发送日志复制的请求时，它会带上前一个日志记录的 index 和 term，如果从节点发现自己的日志中不存在这个记录，则会拒绝这个请求。
 
-![](https://ws2.sinaimg.cn/large/006tNc79gy1fm40wfjblhj30ym0i5dif.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fm40wfjblhj30ym0i5dif.jpg)
 
 正常情况下，每次日志复制都能正常完成，而且节点都能保证日志记录都是完全一致的。但如果 leader 节点崩溃掉，可能会出现日志不一致的情况（奔溃的主节点还没有完全把自己日志文件中的记录复制到其他节点，因此有些节点的日志比另外一些节点内容更多）。
 

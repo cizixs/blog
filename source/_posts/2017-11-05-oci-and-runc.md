@@ -25,7 +25,7 @@ OCI 由 docker、coreos 以及其他容器相关公司创建于 2015 年，目�
 
 这两个协议通过 OCI runtime filesytem bundle 的标准格式连接在一起，OCI 镜像可以通过工具转换成 bundle，然后 OCI 容器引擎能够识别这个 bundle 来运行容器。
 
-![](https://ws4.sinaimg.cn/large/006tNc79gy1fl7l7qihpmj30vi0lj756.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fl7l7qihpmj30vi0lj756.jpg)
 
 下面，我们来介绍这两个 OCI 标准。因为标准本身细节很多，而且还在不断维护和更新，如果不是容器的实现者，没有必须对每个细节都掌握。所以我以介绍概要为主，给大家有个主观的认知。
 
@@ -42,7 +42,7 @@ OCI 容器镜像主要包括几块内容：
 
 OCI 对容器 runtime 的标准主要是指定容器的运行状态，和 runtime 需要提供的命令。下图可以是容器状态转换图：
 
-![](https://ws3.sinaimg.cn/large/006tNc79gy1fl7l8q0xl4j30uf0iaq4s.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fl7l8q0xl4j30uf0iaq4s.jpg)
 
 - init 状态：这个是我自己添加的状态，并不在标准中，表示没有容器存在的初始状态
 - creating：使用 `create` 命令创建容器，这个过程称为创建中
@@ -671,7 +671,7 @@ if err := syscall.Exec(name, l.config.Args[0:], os.Environ()); err != nil {
 
 至此，容器的所有内容都 ok，而且容器里的用户进程也启动了。
 
-![](https://ws1.sinaimg.cn/large/006tNc79gy1fl7mqae7ylj31kw138tn7.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79gy1fl7mqae7ylj31kw138tn7.jpg)
 
 runc 的代码调用关系如上图所示，可以在新页面打开查看大图。主要逻辑分成三块：
 

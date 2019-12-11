@@ -4,8 +4,8 @@ title: "什么是 istio"
 excerpt: "什么是 istio？它解决什么问题？和微服务有什么关系？service mesh 又是什么？这篇文章就尝试解答这些问题"
 categories: blog
 tags: [istio, container, microservice, servicemesh]
-cover_img: https://ws3.sinaimg.cn/large/006tNc79ly1g1qxeoeinfj318w0u0gts.jpg
-feature_img: https://ws3.sinaimg.cn/large/006tNc79ly1g1qxeoeinfj318w0u0gts.jpg
+cover_img: https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79ly1g1qxeoeinfj318w0u0gts.jpg
+feature_img: https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNc79ly1g1qxeoeinfj318w0u0gts.jpg
 comments: true
 share: true
 ---
@@ -26,7 +26,7 @@ share: true
 * 控制（Control）：应用用户定义的 policy，保证资源在消费者中公平分配
 * 观察（Observe）：查看服务运行期间的各种数据，比如日志、监控和 tracing，了解服务的运行情况
 
-![what is istio](https://ws1.sinaimg.cn/large/006tNbRwgy1fumckfqh4ej31kw0sb4c7.jpg)
+![what is istio](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fumckfqh4ej31kw0sb4c7.jpg)
 
 虽然听起来非常高级，功能非常强大，但是一股脑出现这么多名词，还都是非常虚的概念，说了跟没说一样。要想理解上面这几句话的含义，我们还是从头说起，先聊聊 service mesh。
 
@@ -54,25 +54,25 @@ Wikipedia 对代理的定义如下：
 * 注入：既然代理可以看到流量，那么它也可以修改网络流量，可以自动在收到的流量中添加一些数据，比如有些宽带提供商的弹窗广告
 * ……
 
-![what is proxy](https://ws4.sinaimg.cn/large/006tNbRwgy1fume2oh274j30vg0glgmg.jpg)
+![what is proxy](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fume2oh274j30vg0glgmg.jpg)
 
 不是要讲 service mesh 吗？为什么扯了一堆代理的事情？因为 service mesh 可以看做是传统代理的升级版，用来解决现在微服务框架中出现的问题，可以把 service mesh 看做是**分布式**的**微服务**代理。
 
 在传统模式下，代理一般是集中式的单独的服务器，所有的请求都要先通过代理，然后再流入转发到实际的后端。而在 service mesh 中，代理变成了分布式的，它常驻在了应用的身边（最常见的就是 kubernetes sidecar 模式，每一个应用的 pod 中都运行着一个代理，负责流量相关的事情）。这样的话，应用所有的流量都被代理接管，那么这个代理就能做到上面提到的所有可能的事情，从而带来无限的想象力。
 
-![side car proxy](https://ws2.sinaimg.cn/large/006tNbRwgy1fumf6f3ighj30vu0gjt95.jpg)
+![side car proxy](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fumf6f3ighj30vu0gjt95.jpg)
 
 此外，原来的代理都是基于网络流量的，一般都是工作在 IP 或者 TCP 层，很少关心具体的应用逻辑。但是 service mesh 中，代理会知道整个集群的所有应用信息，并且额外添加了热更新、注入服务发现、降级熔断、认证授权、超时重试、日志监控等功能，让这些通用的功能不必每个应用都自己实现，放在代理中即可。换句话说，service mesh 中的代理对微服务中的应用做了定制化的改进！
 
-![distributed micro-service proxy](https://ws2.sinaimg.cn/large/006tNbRwgy1fumeg2zckgj30vc0gf761.jpg)
+![distributed micro-service proxy](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fumeg2zckgj30vc0gf761.jpg)
 
 就这样，借着微服务和容器化的东风，传统的代理摇身一变，成了如今炙手可热的 service mesh。应用微服务之后，每个单独的微服务都会有很多副本，而且可能会有多个版本，这么多微服务之间的相互调用和管理非常复杂，但是有了 service mesh，我们可以把这块内容统一在代理层。
 
-![service mesh architecture](https://ws3.sinaimg.cn/large/006tNbRwgy1fumdcd3gp1g31hc0teb2a.gif)
+![service mesh architecture](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fumdcd3gp1g31hc0teb2a.gif)
 
 有了看起来四通八达的分布式代理，我们还需要对这些代理进行统一的管理。手动更新每个代理的配置，对代理进行升级或者维护是个不可持续的事情，在前面的基础上，在加上一个控制中心，一个完整的 service mesh 就成了。管理员只需要根据控制中心的 API 来配置整个集群的应用流量、安全规则即可，代理会自动和控制中心打交道根据用户的期望改变自己的行为。
 
-![service mesh with control plane](https://ws2.sinaimg.cn/large/006tNbRwgy1fumf44jsmwj30w40i1djt.jpg)
+![service mesh with control plane](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fumf44jsmwj30w40i1djt.jpg)
 
 **NOTE**：所以你也可以理解 service mesh 中的代理会抢了 Nginx 的生意，这也是为了 Nginx 也要开始做 NginMesh 的原因。
 
@@ -80,7 +80,7 @@ Wikipedia 对代理的定义如下：
 
 了解了 service mesh 的概念，我们再来看 istio ，也许就会清楚很多。首先来看 istio 官方给出的架构图：
 
-![istio architecture](https://ws4.sinaimg.cn/large/006tNbRwgy1fumf8ajs4oj30s90g7did.jpg)
+![istio architecture](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fumf8ajs4oj30s90g7did.jpg)
 
 可以看到，istio 就是我们上述提到的 service mesh 架构的一种实现，服务之间的通信（比如这里的 Service A 访问 Service B）会通过代理（默认是 envoy）来进行，而且中间的网络协议支持 HTTP/1.1，HTTP/2，gRPC 或者 TCP，可以说覆盖了主流的通信协议。控制中心做了进一步的系分，分成了 Pilot、Mixer、和 Citadel，它们的各自功能如下：
 
@@ -103,23 +103,23 @@ Wikipedia 对代理的定义如下：
 
 用户请求出现问题无外乎两个问题：错误和响应慢。如果请求错误，那么我们需要知道那个步骤出错了，这么多的微服务之间的调用怎么确定哪个有调用成功？哪个没有调用成功呢？如果是请求响应太慢，我们就需要知道到底哪些地方比较慢？整个链路的调用各阶段耗时是多少？哪些调用是并发执行的，哪些是串行的？这些问题需要我们能非常清楚整个集群的调用以及流量情况。
 
-![微服务故障排查困难](https://ws2.sinaimg.cn/large/006tNbRwgy1fundnum6cwj31510m375v.jpg)
+![微服务故障排查困难](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fundnum6cwj31510m375v.jpg)
 
 此外，微服务拆分成这么多组件，如果单个组件出错的概率不变，那么整体有地方出错的概率就会增大。服务调用的时候如果没有错误处理机制，那么会导致非常多的问题。比如如果应用没有配置超时参数，或者配置的超时参数不对，则会导致请求的调用链超时叠加，对于用户来说就是请求卡住了；如果没有重试机制，那么因为各种原因导致的偶发故障也会导致直接返回错误给用户，造成不好的用户体验；此外，如果某些节点异常（比如网络中断，或者负载很高），也会导致应用整体的响应时间变成，集群服务应该能自动避开这些节点上的应用；最后，应用也是会出现 bug 的，各种 bug 会导致某些应用不可访问。这些问题需要每个应用能及时发现问题，并做好对应的处理措施。
 
-![应用容错性](https://ws3.sinaimg.cn/large/006tNbRwgy1fundt2q5alj31kw0sh7cx.jpg)
+![应用容错性](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fundt2q5alj31kw0sh7cx.jpg)
 
 应用数量的增多，对于日常的应用发布来说也是个难题。应用的发布需要非常谨慎，如果应用都是一次性升级的，出现错误会导致整个线上应用不可用，影响范围太大；而且，很多情况我们需要同时存在不同的版本，使用 AB 测试验证哪个版本更好；如果版本升级改动了 API，并且互相有依赖，那么我们还希望能自动地控制发布期间不同版本访问不同的地址。这些问题都需要智能的流量控制机制。
 
-![应用发布困难](https://ws4.sinaimg.cn/large/006tNbRwgy1fune76uq2wj31550jb0uc.jpg)
+![应用发布困难](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1fune76uq2wj31550jb0uc.jpg)
 
 为了保证整个系统的安全性，每个应用都需要实现一套相似的认证、授权、HTTPS、限流等功能。一方面大多数的程序员对安全相关的功能并不擅长或者感兴趣，另外这些完全相似的内容每次都要实现一遍是非常冗余的。这个问题需要一个能自动管理安全相关内容的系统。
 
-![应用安全](https://ws2.sinaimg.cn/large/006tNbRwgy1funelzxf46j31kw0qu79g.jpg)
+![应用安全](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1funelzxf46j31kw0qu79g.jpg)
 
 上面提到的这些问题是不是非常熟悉？它们就是 istio 尝试解决的问题，如果把上面的问题和 istio 提供的功能做个映射，你会发现它们是非常匹配，毕竟 istio 就是为了解决微服务的这些问题才出现的。
 
-![istio solves microservice issues](https://ws2.sinaimg.cn/large/006tNbRwgy1funghiputng31hc0te7ip.gif)
+![istio solves microservice issues](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgy1funghiputng31hc0te7ip.gif)
 
 ## 用什么姿势接入 istio？
 
