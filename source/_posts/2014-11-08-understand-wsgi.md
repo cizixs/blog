@@ -21,7 +21,7 @@ share: true
 
 
 ### HTTP 基础
-![http](http://ww4.sinaimg.cn/large/005yyi5Jjw1em3fj419m7j30i40g8gm5.jpg
+![http](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/005yyi5Jjw1em3fj419m7j30i40g8gm5.jpg
 )
 
 对于 web 应用程序来说，最基本的概念就是客户端发送请求（request），收到服务器端的响应（response）。
@@ -49,7 +49,7 @@ share: true
 
 实际生产中，python 程序是放在服务器的 http server（比如 apache， nginx 等）上的。现在的问题是 **服务器程序怎么把接受到的请求传递给 python 呢，怎么在网络的数据流和 python 的结构体之间转换呢？**这就是 wsgi 做的事情：一套关于程序端和服务器端的规范，或者说统一的接口。
 
-![](http://ww2.sinaimg.cn/large/005yyi5Jjw1em3l4rsqdbj30ue0g80tz.jpg
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/005yyi5Jjw1em3l4rsqdbj30ue0g80tz.jpg
 )
 
 ## WSGI
@@ -192,7 +192,7 @@ PEP 333 里给出了一个 wsgi server 的简单实现，我又简化了一下�
 有些程序可能处于服务器端和程序端两者之间：对于服务器程序，它就是应用程序；而对于应用程序，它就是服务器程序。这就是中间层 middleware。middleware 对服务器程序和应用是透明的，它像一个代理/管道一样，把接收到的请求进行一些处理，然后往后传递，一直传递到客户端程序，最后把程序的客户端处理的结果再返回。如下图所示：
 
 
-![](http://ww4.sinaimg.cn/large/005yyi5Jjw1em2p14p5z9j30rs0cqwg1.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/005yyi5Jjw1em2p14p5z9j30rs0cqwg1.jpg)
 
 
 middleware 做了两件事情：

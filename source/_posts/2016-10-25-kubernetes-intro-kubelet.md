@@ -16,7 +16,7 @@ share: true
 
 集群状态下，kubelet 会从 master 上读取信息，但其实 kubelet 还可以从其他地方获取节点的 pod 信息。目前 kubelet 支持三种数据源：
 
-![kubelet architecture](http://ww2.sinaimg.cn/large/006y8lVagw1f8vkhdub9zj31hc0u0djl.jpg)
+![kubelet architecture](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006y8lVagw1f8vkhdub9zj31hc0u0djl.jpg)
 
 1. 本地文件
 2. 通过 url 从网络上某个地址来获取信息
@@ -29,7 +29,7 @@ share: true
 ### pod 管理
  在 kubernetes 的设计中，最基本的管理单位是 pod，而不是 container。pod 是 kubernetes 在容器上的一层封装，由一组运行在同一主机的一个或者多个容器组成。如果把容器比喻成传统机器上的一个进程（它可以执行任务，对外提供某种功能），那么 pod 可以类比为传统的主机：它包含了多个容器，为它们提供共享的一些资源。
 
-![](http://ww4.sinaimg.cn/large/006y8lVagw1f93i3nzo9aj30yg0lptc6.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006y8lVagw1f93i3nzo9aj30yg0lptc6.jpg)
 
 之所以费功夫提供这一层封装，主要是因为容器推荐的用法是里面只运行一个进程，而一般情况下某个应用都由多个组件构成的。
 

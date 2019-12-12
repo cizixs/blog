@@ -136,7 +136,7 @@ rtt min/avg/max/mdev = 0.039/0.072/0.139/0.047 ms
 
 完成这些，我们创建的网络拓扑结构如下所示：
 
-![](http://wx4.sinaimg.cn/large/728b3d6dgy1fcl8ox6rsyj213o0f8ab7.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/728b3d6dgy1fcl8ox6rsyj213o0f8ab7.jpg)
 
 ## 使用 bridge 连接不同的 namespace
 
@@ -196,7 +196,7 @@ PING 10.0.1.3 (10.0.1.3) 56(84) bytes of data.
 
 下图是这部分网络的拓扑结构，如果对 docker 网络熟悉的话，其实这和 docker 默认的 bridge 网络模型非常相似。当然要实现每个 namespace 对外网的访问还需要额外的配置（设置默认网关，开启 ip_forward，为网络添加 NAT 规则等）。
 
-![](http://wx4.sinaimg.cn/large/728b3d6dgy1fcl8khvmjfj21hc0u0770.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/728b3d6dgy1fcl8khvmjfj21hc0u0770.jpg)
 
 ## 参考资料
 

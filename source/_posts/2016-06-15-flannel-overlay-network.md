@@ -180,7 +180,7 @@ flannel 默认使用 8285 端口作为 UDP 封装报文的端口，VxLan 的话�
 
 然后在 wireshark 中看一下封装的报文：
 
-![](http://ww2.sinaimg.cn/large/728b3d6dgw1f4nvqeigjqj21ix0wh19x.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/728b3d6dgw1f4nvqeigjqj21ix0wh19x.jpg)
 
 这里使用了 wireshark 的 `decode as` 功能把被封装的报文显示出来。可以看到主机间是在 UDP 8285 端口通信的，报文中包含了容器间真正的网络报文，比如这里的 ping 包（ICMP 协议报文）。
 

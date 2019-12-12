@@ -22,7 +22,7 @@ Rabbitmq 是 amqp 的 Erlang 实现，也是现在非常流行的一种消息机
 
 ## rabbitmq 概念和架构
 
-![](http://ww1.sinaimg.cn/large/728b3d6djw1exeozui9f8j20sg0lcdk6.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/728b3d6djw1exeozui9f8j20sg0lcdk6.jpg)
 
 在生产者-消费者模型中，rabbitmq 充当着 broker 的角色。在 rabbitmq 的内部，还有以下的概念：
 

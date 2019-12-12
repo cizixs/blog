@@ -8,4 +8,4 @@ comments: true
 share: true
 ---
 
-![](http://ww3.sinaimg.cn/large/728b3d6djw1erfwdi0u3lj21kw2pbe2t.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/728b3d6djw1erfwdi0u3lj21kw2pbe2t.jpg)

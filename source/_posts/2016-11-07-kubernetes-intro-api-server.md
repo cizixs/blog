@@ -20,7 +20,7 @@ share: true
 
 在这篇教程中，我们的系统架构将变成下面这个样子：
 
-![](http://ww4.sinaimg.cn/large/006tNbRwgw1f9isyaffosj31hc0u00ul.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tNbRwgw1f9isyaffosj31hc0u00ul.jpg)
 
 我们把要配置的 pod 通过 kubectl 发送给 API Server，里面已经手动指定了要运行的节点。API Server 解析并保存对应的资源，对应的 kubelet 定时拉取数据时候发现 pod 是分配给自己的，会下载对应的配置并执行去生成 pod。
 

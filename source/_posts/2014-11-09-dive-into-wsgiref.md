@@ -83,7 +83,7 @@ server 的终端会有一条记录：
 
 主要的代码结构如下图所示：
 
-![](http://ww2.sinaimg.cn/large/005yyi5Jjw1em4xm3stghj30ps0d5t9l.jpg
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/005yyi5Jjw1em4xm3stghj30ps0d5t9l.jpg
 )
 
 
@@ -202,7 +202,7 @@ WSGIServer 在原来的 HTTPServer 上面封装了一层，在原来的 HTTPServ
 
 可以参考[这篇文章](https://cizixs.github.io/2014/11/08/understand-wsgi/)里的 wsgi server 的简单实现。
 
-![](http://ww2.sinaimg.cn/large/005yyi5Jjw1em4xzexur2j30sr0yk77n.jpg
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/005yyi5Jjw1em4xzexur2j30sr0yk77n.jpg
 )
 
 

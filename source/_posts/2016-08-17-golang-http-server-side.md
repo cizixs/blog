@@ -37,7 +37,7 @@ func main() {
 
 运行 `go run hello_server.go`，我们的服务器就会监听在本地的 `12345` 端口，对所有的请求都会返回 `hello, world!`：
 
-![](http://ww4.sinaimg.cn/large/006tKfTcgw1f6uoaz8reuj30ne0hrq56.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgw1f6uoaz8reuj30ne0hrq56.jpg)
 
 正如上面程序展示的那样，我们只要实现的一个 Handler，它的[接口原型](https://golang.org/pkg/net/http/#Handler)是（也就是说只要实现了 `ServeHTTP` 方法的对象都可以作为 Handler）：
 
@@ -136,7 +136,7 @@ func main() {
 
 运行这个程序，在浏览器中打开 `http://127.0.0.1:12345`，可以看到所有的文件，点击对应的文件还能看到它的内容。
 
-![](http://ww3.sinaimg.cn/large/006tKfTcgw1f6uujkzgc9j30mc0e8gm5.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgw1f6uujkzgc9j30mc0e8gm5.jpg)
 
 其他两个 Handler，这里就不再举例子了，读者可以自行参考文档。
 
@@ -171,7 +171,7 @@ func main() {
 
 这个服务器的功能也很简单：如果在请求的 URL 是 `/hello`，就返回 `hello, world!`；否则就返回 URL 的路径，路径是从请求对象 `http.Requests` 中提取的。
 
-![](http://ww3.sinaimg.cn/large/006tKfTcgw1f6vdun05zpj30ne0hrgoe.jpg)
+![](https://cizixs-blog.oss-cn-beijing.aliyuncs.com/006tKfTcgw1f6vdun05zpj30ne0hrgoe.jpg)
 
 这段代码和之前的代码有两点区别：
 
